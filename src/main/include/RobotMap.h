@@ -23,3 +23,11 @@
 // number and the module. For example you with a rangefinder:
 // constexpr int kRangeFinderPort = 1;
 // constexpr int kRangeFinderModule = 1;
+
+namespace ports {
+    constexpr int xbox_controller = 0;
+    constexpr int left_back_drive = 1;
+    constexpr int left_front_drive = 2;
+    constexpr int right_back_drive = 3;
+    constexpr int right_front_drive = 4;
+}
