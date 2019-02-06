@@ -7,25 +7,30 @@
 
 #pragma once
 
+#include <memory>
+
 #include <frc/TimedRobot.h>
 #include <frc/commands/Command.h>
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "OI.h"
+#include "commands/DriveCommand.h"
+#include "subsystems/DriveSubsystem.h"
 
 class Robot : public frc::TimedRobot {
- public:
-  static OI _oi;
+public:
+    static std::shared_ptr<OI> oi;
+    static std::shared_ptr<DriveSubsystem> drive_subsystem;
+    void RobotInit() override;
+    void RobotPeriodic() override;
+    void DisabledInit() override;
+    void DisabledPeriodic() override;
+    void AutonomousInit() override;
+    void AutonomousPeriodic() override;
+    void TeleopInit() override;
+    void TeleopPeriodic() override;
+    void TestPeriodic() override;
 
-  void RobotInit() override;
-  void RobotPeriodic() override;
-  void DisabledInit() override;
-  void DisabledPeriodic() override;
-  void AutonomousInit() override;
-  void AutonomousPeriodic() override;
-  void TeleopInit() override;
-  void TeleopPeriodic() override;
-  void TestPeriodic() override;
-
- private:
+private:
+    std::shared_ptr<DriveCommand> drive_command;
 };

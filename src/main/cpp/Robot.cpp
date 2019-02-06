@@ -10,9 +10,14 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-OI Robot::_oi;
+std::shared_ptr<OI> Robot::oi;
+std::shared_ptr<DriveSubsystem> Robot::drive_subsystem;
 
 void Robot::RobotInit() {
+    oi = std::make_shared<OI>();
+
+    drive_subsystem = std::make_shared<DriveSubsystem>();
+    drive_command = std::make_shared<DriveCommand>(drive_subsystem, oi);
 }
 
 /**
@@ -51,6 +56,7 @@ void Robot::AutonomousInit() {
 void Robot::AutonomousPeriodic() { frc::Scheduler::GetInstance()->Run(); }
 
 void Robot::TeleopInit() {
+    drive_command->Start();
 }
 
 void Robot::TeleopPeriodic() { frc::Scheduler::GetInstance()->Run(); }
