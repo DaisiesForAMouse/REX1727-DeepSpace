@@ -161,6 +161,7 @@ bin/
 
 # VS Code
 .vscode
+vendordeps
 
 # Completion
 .clang_complete
